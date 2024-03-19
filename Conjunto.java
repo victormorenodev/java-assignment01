@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.Collections;
 
 class Conjunto
 {
@@ -11,6 +12,7 @@ class Conjunto
 		{
 			elementos.add(e);
 		}
+		Collections.sort(elementos);
 	}
 
 	boolean verificaPertinencia(int elemento)
@@ -36,6 +38,7 @@ class Conjunto
 				uniao.elementos.add(elemento);	
 			}
 		}
+		Collections.sort(uniao.elementos);
 		return uniao;
 	}
 	
