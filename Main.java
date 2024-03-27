@@ -31,7 +31,12 @@ class Main
 		// Verifica se a união do conjunto 2 e 3 é igual a 1
 		Conjunto uniaoc2c3 = new Conjunto();
 		uniaoc2c3 = c2.uniaoConjunto(c3);
-		System.out.println("c2Uc3 = c1 ? "+uniaoc2c3.elementos.equals(c1.elementos));
+		Boolean igual = false;
+		if (c1.verificaSubconjunto(uniaoc2c3) && c1.diferencaConjunto(uniaoc2c3).elementos.isEmpty())
+		{
+			igual = true;
+		}
+		System.out.println("c2Uc3 = c1 ? "+igual);
 
 		// Verifica se a intersecção dos conjuntos 1 e 2 é vazia
 		Conjunto interseccao = new Conjunto();
@@ -43,6 +48,13 @@ class Main
 		diferenca = c1.diferencaConjunto(c2);
 		System.out.println("Diferença entre os conjuntos 1 e 2:");
 		main.printAll(diferenca);
+	
+		Conjunto c5 = new Conjunto();
+		c5.insereElementos(1, 2, 3, 4);
+		Conjunto c6 = new Conjunto();
+		c6.insereElementos(1, 2);
+		Conjunto produto = c5.produtoCartesiano(c6);
+		main.printProduto(produto);
 	}	
 
 	void printAll(Conjunto c)
@@ -51,6 +63,13 @@ class Main
 		{
 			System.out.println("Elemento: "+c.elementos.get(i));
 		}
+	}
+
+	void printProduto(Conjunto c) {
+    		for (Object conjunto : c.elementos) {
+        		Conjunto par = (Conjunto) conjunto;
+        		System.out.println("Par: (" + par.elementos.get(0) + ", " + par.elementos.get(1) + ")");
+    		}
 	}
 
 	void pertinente(Conjunto c1, Conjunto c2)
