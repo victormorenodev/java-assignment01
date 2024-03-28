@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Collections;
@@ -59,20 +60,36 @@ class Conjunto
 	Conjunto produtoCartesiano(Conjunto conjunto)
 	{
 		Conjunto produto = new Conjunto();
-		Conjunto par = new Conjunto();
-		int tamanho_produto = this.elementos.size() * conjunto.elementos.size();
-		for (int i = 0; i < tamanho_produto; i++)
+		for (int j = 0; j < conjunto.elementos.size(); j++)
 		{
-			for (int j = 0; j < conjunto.elementos.size(); j++)
+			for (int k = 0; k < this.elementos.size(); k++)
 			{
-				for (int k = 0; k < this.elementos.size(); k++)
-				{
-					par.insereElementos(this.elementos.get(k));
-					par.insereElementos(conjunto.elementos.get(j));
-					produto.insereElementos(par);
-				}
+				Conjunto par = new Conjunto();
+				par.insereElementos(this.elementos.get(k));
+				par.insereElementos(conjunto.elementos.get(j));
+				produto.insereElementos(par);
 			}
 		}
 		return produto;
 	}
+
+	Conjunto conjuntoPotencia() 
+	{
+        	Conjunto potencia = new Conjunto();
+        	int n = this.elementos.size();
+        	int totalSubconjuntos = 1 << n; // Calcula 2^n
+        	for (int i = 0; i < totalSubconjuntos; i++) 
+		{
+            		Conjunto subconjunto = new Conjunto();
+            		for (int j = 0; j < n; j++) 
+			{
+                		if ((i & (1 << j)) > 0) 
+				{
+                    			subconjunto.insereElementos(this.elementos.get(j));
+                		}
+            		}
+            		potencia.insereElementos(subconjunto);
+        	}
+        	return potencia;
+    	}
 }
